@@ -3,20 +3,28 @@ package ldgraph;
 import views.*;
 
 /**
- *
- * @author jam
+ * This is the AVA - the Amsta Verzorgers Applet
+ * @author Jelle Mogony, AMS04
  */
 public class LDGraph {
 
     
+    /**
+     * Shows the login screen
+     */
     public static void showLogin()
     {
         Login login = new Login();
+        login.setVisible(true);
     }
     
-    public static void showPatientOverview(String name)
+    /**
+     * Shows an overview with a graph containing the patients scores.
+     */
+    public static void showPatientOverview()
     {
-        PatientOverview po = new PatientOverview(name);
+        PatientOverview po = new PatientOverview();
+        po.setVisible(true);
     }
     /**
      * @param args the command line arguments
