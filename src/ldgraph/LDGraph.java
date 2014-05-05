@@ -23,8 +23,16 @@ public class LDGraph {
      */
     public static void showPatientOverview()
     {
+        System.out.println("Setting up patients overview...");
         PatientOverview po = new PatientOverview();
         po.setVisible(true);
+    }
+    
+    public static void showPatientGraph()
+    {
+        System.out.println("Setting up the graph...");
+        PatientGraph pg = new PatientGraph();
+        pg.setVisible(true);
     }
     /**
      * @param args the command line arguments
