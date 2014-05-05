@@ -1,62 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package views;
 
-import java.awt.BorderLayout;
-import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.JPanel;
-import models.*;
+import connectivity.QueryManager;
+import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
+import models.Patient;
 
 /**
- * Shows a graph containing LineDraw scores per patient
- * @author Jelle Mogony
+ *
+ * @author jelle
  */
 public class PatientOverview extends javax.swing.JFrame {
 
+    private QueryManager qm = new QueryManager();
+    private DefaultTableModel patientTableModel;
+    
+    
     /**
-     * Creates new form PatientOverview2
+     * Creates new form PatientOverview
+     * @param user the frame title will be called after the user's name.
      */
     public PatientOverview() {
         initComponents();
-        /* DUMMY DATA */
-//        String[] names = {"de Vries", "de Boer", "de Man", "de Aap", "van der Hoek"};
-//        ArrayList<Integer> scores;// = new ArrayList();
-//        ArrayList<String> dates;// = new ArrayList();
-//        ArrayList<Scores> patientScores = new ArrayList();
-//        Random rand = new Random();
-//        
-//        for (int i = 0; i < 5; i++) {
-//            scores = new ArrayList();
-//            dates = new ArrayList();
-//            for (int j = 0; j < 10; j++) {
-//                scores.add(rand.nextInt(100));
-//                dates.add((j+1) + "-04");
-//            }
-//            patientScores.add(new Scores(names[i], scores, dates));
-//        }
-        /* END DUMMY DATA */
-        
-        graphPanel.setLayout(new BorderLayout());
-        graphPanel.add(new Graph(generateDummyData(5)).getCp(), BorderLayout.CENTER);
-        graphPanel.validate();
-    }
-    
-    private ArrayList<Scores> generateDummyData(int num) {
-        String[] names = {"de Vries", "de Boer", "de Man", "de Aap", "van der Hoek"};
-        ArrayList<Integer> scores;// = new ArrayList();
-        ArrayList<String> dates;// = new ArrayList();
-        ArrayList<Scores> patientScores = new ArrayList();
-        Random rand = new Random();
-        
-        for (int i = 0; i < 5; i++) {
-            scores = new ArrayList();
-            dates = new ArrayList();
-            for (int j = 0; j < 10; j++) {
-                scores.add(rand.nextInt(100));
-                dates.add((j+1) + "-04");
-            }
-            patientScores.add(new Scores(names[i], scores, dates));
+        this.setTitle(ldgraph.Session.storedUserName);
+        patientTableModel = (DefaultTableModel) this.patientTable.getModel();
+        LinkedList<Patient> patients = qm.getPatientList();
+        for(Patient patient : patients) {
+            patientTableModel.addRow(new Object[]{
+                patient.getPatientId(),
+                patient.getName(),
+                patient.getRoom(),
+                patient.getDob()});
         }
-        return patientScores;
     }
 
     /**
@@ -68,24 +48,48 @@ public class PatientOverview extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        graphPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        patientTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
-        graphPanel.setLayout(graphPanelLayout);
-        graphPanelLayout.setHorizontalGroup(
-            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
-        );
-        graphPanelLayout.setVerticalGroup(
-            graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
-        );
+        patientTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jButton1.setText("Voeg Toe");
+            },
+            new String [] {
+                "id", "Bewoner", "Kamer", "Geboorte Datum"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(patientTable);
+        if (patientTable.getColumnModel().getColumnCount() > 0) {
+            patientTable.getColumnModel().getColumn(0).setMaxWidth(20);
+            patientTable.getColumnModel().getColumn(2).setMaxWidth(50);
+            patientTable.getColumnModel().getColumn(3).setMinWidth(100);
+        }
+
+        jButton1.setText("Laat resultaten zien");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,10 +98,9 @@ public class PatientOverview extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(graphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -105,20 +108,57 @@ public class PatientOverview extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(graphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println(patientTable.getValueAt(patientTable.getSelectedRow(), 0));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PatientOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PatientOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PatientOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PatientOverview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PatientOverview().setVisible(true);
+//            }
+//        });
+//    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel graphPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable patientTable;
     // End of variables declaration//GEN-END:variables
 }
