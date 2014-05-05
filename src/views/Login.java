@@ -1,6 +1,8 @@
 package views;
 
 import ldgraph.LDGraph;
+import connectivity.QueryManager;
+import models.User;
 
 /**
  * This is the class for the login screen.
@@ -100,12 +102,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfUsernameActionPerformed
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-//        if(tfUsername.getText().equals("gebruiker") 
-//                && tfPassword.getText().equals("wachtwoord")) {
+        String username = tfUsername.getText().trim();
+        String password = tfPassword.getText().trim();
+        QueryManager qm = new QueryManager();
+        int userId = new QueryManager().login(username, password);
+        if(userId > 0) {
+            System.out.println("Credentials seem to be correct...");
+            User user = qm.getUserData(userId);
+            ldgraph.Session.storedUserId = user.getId();
+            System.out.println("Logged in!");
             LDGraph.showPatientOverview();
             this.setVisible(false);
-//        } else {
+        } else {
+            System.out.println("Login failed!");
             jlError.setText("Foute gebruikersnaam/wachtwoord.");
+        }
+
+//        if(tfUsername.getText().equals("gebruiker") 
+//                && tfPassword.getText().equals("wachtwoord")) {
+//            LDGraph.showPatientOverview();
+//            this.setVisible(false);
+//        } else {
+//            jlError.setText("Foute gebruikersnaam/wachtwoord.");
 //        }
     }//GEN-LAST:event_bLoginActionPerformed
 
