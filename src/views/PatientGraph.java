@@ -1,11 +1,9 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.util.ArrayList;
-import java.util.Random;
 import ldgraph.LDGraph;
-//import javax.swing.JPanel;
 import models.*;
+import connectivity.QueryManager;
 
 /**
  * Shows a graph containing LineDraw scores per patient
@@ -13,55 +11,18 @@ import models.*;
  */
 public class PatientGraph extends javax.swing.JFrame {
 
+    QueryManager qm = new QueryManager();
+    
     /**
      * Creates new form PatientOverview2
      */
     public PatientGraph() {
         initComponents();
-        /* DUMMY DATA */
-//        String[] names = {"de Vries", "de Boer", "de Man", "de Aap", "van der Hoek"};
-//        ArrayList<Integer> scores;// = new ArrayList();
-//        ArrayList<String> dates;// = new ArrayList();
-//        ArrayList<Scores> patientScores = new ArrayList();
-//        Random rand = new Random();
-//        
-//        for (int i = 0; i < 5; i++) {
-//            scores = new ArrayList();
-//            dates = new ArrayList();
-//            for (int j = 0; j < 10; j++) {
-//                scores.add(rand.nextInt(100));
-//                dates.add((j+1) + "-04");
-//            }
-//            patientScores.add(new Scores(names[i], scores, dates));
-//        }
-        /* END DUMMY DATA */
-        
         graphPanel.setLayout(new BorderLayout());
-        graphPanel.add(new Graph(generateDummyData(5)).getCp(), BorderLayout.CENTER);
+        graphPanel.add(new Graph(qm.getUserScores(ldgraph.Session.storedPatientId)).getCp(), BorderLayout.CENTER);
         graphPanel.validate();
     }
     
-//    private ArrayList<Score> generateDummyData(int num) {
-//        num = num > 10 ? 10 : num;
-//        String[] names = {"de Vries", "de Boer", "de Man", "de Aap", 
-//            "van der Hoek", "Mogony", "Baas", "Goucem", "Amakran"};
-//        ArrayList<Integer> scores;// = new ArrayList();
-//        ArrayList<String> dates;// = new ArrayList();
-//        ArrayList<Score> patientScores = new ArrayList();
-//        Random rand = new Random();
-//        
-//        for (int i = 0; i < num; i++) {
-//            scores = new ArrayList();
-//            dates = new ArrayList();
-//            for (int j = 0; j < 10; j++) {
-//                scores.add(rand.nextInt(100));
-//                dates.add((j+1) + "-04");
-//            }
-//            patientScores.add(new Score(names[i], scores, dates));
-//        }
-//        return patientScores;
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
