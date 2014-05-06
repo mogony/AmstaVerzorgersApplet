@@ -1,21 +1,28 @@
 package models;
 
 /**
- *
+ * Object to store patient data in.
  * @author Jelle Mogony, AMS04
  */
 public class Patient {
     private int patientId;
-    private String name;
-    private String room;
-    private String dob; //date of birth
-    private String comments;
+    private String name, room, dob, comments; //dob = date of birth
+    
+    /*Table attributes*/
+    public final static String TABLE = "bewoner";
+    public final static String ID = "bewoner_id";
+    public final static String NAME = "naam";
+    public final static String ROOM = "kamer";
+    public final static String DOB = "geb_datum";
+    public final static String COMMENTS = "opmerkingen";
 
     public Patient(int patientId, String name, String room, String dob, String comments) {
+        int lengthOfTime = 10;
         this.patientId = patientId;
         this.name = name;
         this.room = room;
-        this.dob = dob;
+        /* I don't think time is needed in DATE of birth */
+        this.dob = dob.substring(0, dob.length()-lengthOfTime);
         this.comments = comments;
     }
 
@@ -58,6 +65,4 @@ public class Patient {
     public void setComments(String comments) {
         this.comments = comments;
     }
-    
-    
 }
