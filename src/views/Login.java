@@ -110,6 +110,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Credentials seem to be correct...");
             User user = qm.getUserData(userId);
             ldgraph.Session.storedUserId = user.getId();
+            ldgraph.Session.storedUserName = user.getNaam();
             System.out.println("Logged in!");
             LDGraph.showPatientOverview();
             this.setVisible(false);
@@ -117,14 +118,6 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Login failed!");
             jlError.setText("Foute gebruikersnaam/wachtwoord.");
         }
-
-//        if(tfUsername.getText().equals("gebruiker") 
-//                && tfPassword.getText().equals("wachtwoord")) {
-//            LDGraph.showPatientOverview();
-//            this.setVisible(false);
-//        } else {
-//            jlError.setText("Foute gebruikersnaam/wachtwoord.");
-//        }
     }//GEN-LAST:event_bLoginActionPerformed
 
     /**
