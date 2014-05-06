@@ -7,11 +7,10 @@
 package ldgraph;
 
 /**
- *
- * @author jelle
+ * Store temporary data in this file.
+ * @author Jelle Mogony
  */
 public class Session {
-    public static int storedUserId;
-    public static String storedUserName;
-    public static String storedUserDob;
+    public static int storedUserId, storedPatientId;
+    public static String storedUserName, storedUserDob;
 }
