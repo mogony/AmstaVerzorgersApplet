@@ -17,10 +17,12 @@ public class PatientGraph extends javax.swing.JFrame {
      * Creates new form PatientOverview2
      */
     public PatientGraph() {
+        System.out.println("Setting up the chart...");
         initComponents();
         graphPanel.setLayout(new BorderLayout());
         graphPanel.add(new Graph(qm.getUserScores(ldgraph.Session.storedPatientId)).getCp(), BorderLayout.CENTER);
         graphPanel.validate();
+        System.out.println("Done setting up the chart.");
     }
     
     /**
@@ -41,11 +43,11 @@ public class PatientGraph extends javax.swing.JFrame {
         graphPanel.setLayout(graphPanelLayout);
         graphPanelLayout.setHorizontalGroup(
             graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGap(0, 776, Short.MAX_VALUE)
         );
         graphPanelLayout.setVerticalGroup(
             graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         jButton1.setText("< Terug");

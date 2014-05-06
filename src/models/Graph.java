@@ -2,6 +2,8 @@ package models;
 
 import java.util.*;
 import org.jfree.chart.*;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -17,29 +19,32 @@ public class Graph {
 
     /**
      * Creates a graph based on the parameter 'scores'. 
-     * @param scores should include a patients name and a list of scores and 
-     * dates. 
+     * @param scores 
      */
-    public Graph(ArrayList<Scores> scores) {
+    public Graph(LinkedList<Score> scores) {
         dcd = new DefaultCategoryDataset();
-        dcd.clear();
-        ArrayList<Integer> curSubScores; //stores all scores of a patient
-        ArrayList<String> curSubDates; //stores all dates of the scores
 
-        for(Scores userScores : scores) {
-            curSubScores = userScores.getScore();
-            curSubDates = userScores.getDate();
-            for(int i = 0; i < curSubScores.size(); i++) {
-                /* First sets a score (x axis); 
-                /* then binds a patients name to it (the line);
-                /* then binds a date to that score (y axis). */
-                dcd.setValue(curSubScores.get(i), userScores.getName(), 
-                        curSubDates.get(i));
-            }
+        Iterator scoresList = scores.iterator();
+        while(scoresList.hasNext()) {
+            Score currentScore = (Score) scoresList.next();
+            String xAxisLabel = currentScore.getDate() + "\nLevel: " + currentScore.getLevel();
+            //TODO: find out why integers must be converted to numbers
+            dcd.setValue((Number) currentScore.getScore(), "score", xAxisLabel);
+            dcd.setValue((Number) currentScore.getCollisions(), "collisions", xAxisLabel);
+            /* No idea why the ints should be cast to Numbers, but it works. I have
+            used regular integers in the exact same way with the exact same method,
+            and have never run into this problem until now. */
         }
         
-        chart = ChartFactory.createLineChart("Scores", "Date", "Score", dcd);
+        chart = ChartFactory.createLineChart("Score van bewoner", "Datum", "Score/botsingen", dcd);
         chart.setBackgroundPaint(new java.awt.Color(0xFF, 0xFF, 0xFF, 0)); //Transparant
+        
+        /* This makes it so that the X Axis Category Labels are on mutliple lines,
+        instead of one line. With just one line, not everything is visible on the labels. */
+        CategoryPlot plot = chart.getCategoryPlot();
+        CategoryAxis categoryAxis = plot.getDomainAxis();
+        categoryAxis.setMaximumCategoryLabelLines(3);
+        
         cp = new ChartPanel(chart);
     }
     
