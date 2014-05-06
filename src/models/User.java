@@ -1,16 +1,18 @@
 package models;
 
 /**
- *
+ * Object to store user data in.
  * @author Jelle Mogony, AMS04
  */
 public class User {
     private int id;
-    private String naam;
-    private String gebDatum;
-    private String wachtwoord;
+    private String naam, gebDatum, wachtwoord;
 
-    public User() {}
+    public final static String TABLE = "verzorger";
+    public final static String ID = "werknemer_id";
+    public final static String NAME = "naam";
+    public final static String DOB = "geb_datum";
+    public final static String PW = "wachtwoord";
     
     public User(int id, String naam, String gebDatum, String wachtwoord) {
         this.id = id;

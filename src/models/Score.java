@@ -1,29 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package models;
 
-import java.util.ArrayList;
-
 /**
- *
- * @author jelle
+ * Object to store score data in.
+ * @author Jelle Mogony, AMS04
  */
 public class Score {
-    private int level;
-    private String name;
-    private int score;
-    private int collisions;
-    private String date;
-
-    public Score(int level, String name, int score, int collisions, String date) {
+    private int level, collisions, score;
+    private String name, date;
+    
+    /* Table attributes */
+    public final static String TABLE = "score";
+    public final static String LVL = "level_id";
+    public final static String SCORE = "score";
+    public final static String COLS = "collisions";
+    public final static String DATE = "datum";
+    
+    public Score(int level, String name, String score, int collisions, String date) {
+        int lengthOfSecs = 5;
+        this.level = level;
         this.name = name;
-        this.score = score;
+        this.score = convertScoreToSecs(score);
         this.collisions = collisions;
-        this.date = date;
+        this.date = date.substring(0, date.length()-lengthOfSecs); //removes seconds
+    }
+    
+    private static int convertScoreToSecs(String score) {
+        String[] minSecs = score.split(":");
+        int mins = Integer.parseInt(minSecs[0]);
+        int secs = Integer.parseInt(minSecs[1]);
+        return mins * 60 + secs;
     }
 
     public int getLevel() {
@@ -46,8 +51,8 @@ public class Score {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(String score) {
+        this.score = convertScoreToSecs(score);
     }
 
     public int getCollisions() {
