@@ -52,7 +52,6 @@ public class DbManager {
 
     /**
      * Executes a query without result.
-     *
      * @param query, the SQl query
      */
     public void executeQuery(String query) {
@@ -67,9 +66,8 @@ public class DbManager {
 
     /**
      * Executes a query with result.
-     *
-     * @param query, the SQL query
-     * @return
+     * @param query Query that should be executed
+     * @return Results of the query
      */
     public ResultSet doQuery(String query) {
         openConnection();
