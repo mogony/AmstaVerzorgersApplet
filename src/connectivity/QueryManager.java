@@ -139,6 +139,31 @@ public class QueryManager {
         return userScores;
     }
     
+    public void deletePatient(int patientId) {
+        System.out.println("Deleting patient with ID " + patientId + "...");
+        db.openConnection();
+        String sql = "DELETE FROM bewoner WHERE "+ Patient.ID +" = " + patientId;
+        db.executeUpdate(sql);
+        db.closeConnection();
+    }
+    
+    public void editPatient(int patientId, String toChange, String newValue) {
+        db.openConnection();
+        String sql = "UPDATE bewoner " + "SET " + toChange + "='" + newValue + "'"
+                + "WHERE bewoner_id='"+patientId+"';";
+        System.out.println(sql);
+        db.executeUpdate(sql);
+        db.closeConnection();
+    }
+    
+    public void addPatient(String in, String ik, String ig, String io) {
+        String sql = "INSERT INTO bewoner (naam, kamer, geb_datum, opmerkingen) " +
+        "VALUES ('"+in+"','"+ik+"','"+ig+"','"+io+"')";
+        System.out.println(sql);
+        db.executeUpdate(sql);
+        db.closeConnection();
+    }
+    
     /**
      * Adds apostrophes to the given string so MySQL reads it as a string.
      * @param unreadable The string that is unreadable to MySQL.
@@ -147,4 +172,6 @@ public class QueryManager {
     public String stringify(String unreadable) {
         return "'" + unreadable + "'";
     }
+
+
 }
