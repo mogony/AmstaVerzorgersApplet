@@ -63,6 +63,16 @@ public class DbManager {
             System.err.println(SQL_EXCEPTION + e);
         }
     }
+    
+    public void executeUpdate(String query) {
+        openConnection();
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (java.sql.SQLException e) {
+            System.err.println(SQL_EXCEPTION + e);
+        }
+    }
 
     /**
      * Executes a query with result.
