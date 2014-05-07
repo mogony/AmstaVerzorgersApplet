@@ -17,12 +17,10 @@ public class Patient {
     public final static String COMMENTS = "opmerkingen";
 
     public Patient(int patientId, String name, String room, String dob, String comments) {
-        int lengthOfTime = 10;
         this.patientId = patientId;
         this.name = name;
         this.room = room;
-        /* I don't think time is needed in DATE of birth */
-        this.dob = dob.substring(0, dob.length()-lengthOfTime);
+        this.dob = dob;
         this.comments = comments;
     }
 
