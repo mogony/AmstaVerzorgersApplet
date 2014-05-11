@@ -12,7 +12,7 @@ import models.Patient;
  */
 public class PatientOverview extends javax.swing.JFrame {
 
-    private QueryManager qm = new QueryManager();
+//    private QueryManager qm = new QueryManager();
     private DefaultTableModel patientTableModel;
     
     /**
@@ -27,7 +27,7 @@ public class PatientOverview extends javax.swing.JFrame {
     public void updateTable() {
         System.out.println("Setting up patients overview...");
         patientTableModel = (DefaultTableModel) this.patientTable.getModel();
-        LinkedList<Patient> patients = qm.getPatientList();
+        LinkedList<Patient> patients = QueryManager.getPatientList();
         patientTableModel.setRowCount(0);
         for(Patient patient : patients) {
             patientTableModel.addRow(new Object[]{
@@ -193,7 +193,7 @@ public class PatientOverview extends javax.swing.JFrame {
 //            String patientName = qm.getPatient(ldgraph.Session.storedPatientId);
             int delYN = JOptionPane.showConfirmDialog(null, 
                     "Weet u zeker dat u " + ldgraph.Session.storedPatientId + " wilt verwijderen?", "test", 1);
-            if(delYN == 0) qm.deletePatient(ldgraph.Session.storedPatientId);
+            if(delYN == 0) QueryManager.deletePatient(ldgraph.Session.storedPatientId);
         } else 
         {
             System.out.println("No row selected!");
@@ -207,7 +207,7 @@ public class PatientOverview extends javax.swing.JFrame {
         ik = JOptionPane.showInputDialog(null,"Kamer nieuwe bewoner?", JOptionPane.QUESTION_MESSAGE);
         ig = JOptionPane.showInputDialog(null,"Geboortedatum? (yyyy-mm-dd)", JOptionPane.QUESTION_MESSAGE);
         io = JOptionPane.showInputDialog(null,"Opmerkingen?", JOptionPane.QUESTION_MESSAGE);
-        qm.addPatient(in, ik, ig, io);
+        QueryManager.addPatient(in, ik, ig, io);
     }//GEN-LAST:event_jbAddActionPerformed
 
     private void jbEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditActionPerformed
@@ -216,19 +216,19 @@ public class PatientOverview extends javax.swing.JFrame {
         if(selectedCol == 1) { //name change
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat moet de nieuwe naam zijn?", JOptionPane.QUESTION_MESSAGE);
-            qm.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.NAME, newVal);
+            QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.NAME, newVal);
         } else if(selectedCol == 2) { //room
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat is de nieuwe kamer?", JOptionPane.QUESTION_MESSAGE);
-            qm.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.ROOM, newVal);
+            QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.ROOM, newVal);
         } else if(selectedCol == 3)  { //date of birth
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat is de juiste geboorte datum?", JOptionPane.QUESTION_MESSAGE);
-            qm.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.DOB, newVal);
+            QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.DOB, newVal);
         } else if(selectedCol == 4)  { //comments
             String newVal = JOptionPane.showInputDialog(null, 
                     "Opmerking:", JOptionPane.QUESTION_MESSAGE);
-            qm.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.COMMENTS, newVal);
+            QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.COMMENTS, newVal);
         }
         else if(selectedCol == 0) {
             jlError.setText("U kunt ID's niet veranderen!");

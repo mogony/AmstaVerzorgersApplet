@@ -7,24 +7,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
+ * Connection to the database is managed here. This file contains url, username,
+ * and password to the database and also methods to access the database.
  * @author Jelle Mogony, AMS04
  */
 public class DbManager {
 
-    public final String JDBC_EXCEPTION = "JDBC Exception: ";
-    public final String SQL_EXCEPTION = "SQL Exception: ";
-    
-    public Connection connection;
+    public static final String JDBC_EXCEPTION = "JDBC Exception: ";
+    public static final String SQL_EXCEPTION = "SQL Exception: ";
+    public static Connection connection;
+
+    public DbManager() throws IllegalAccessException {
+        throw new IllegalAccessException("DbManager is an utility class. It is not meant to be declared or initialized.");
+    }
 
     /**
-     * Open database connection
+     * Connects to the database. Do not forget to call the method closeConnection()
+     * when the connection is no longer needed.
      */
-    public void openConnection() {
+    public static void openConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-//            String url = "http://rieke.lt";
+            /* Db Server settings */
             String url = "jdbc:mysql://localhost:3306/amsta";//?zeroDateTimeBehavior=convertToNull";
             String user = "root", pass = "";
 
@@ -40,9 +45,9 @@ public class DbManager {
     }
 
     /**
-     * Close database connection
+     * This method closes the database connection.
      */
-    public void closeConnection() {
+    public static void closeConnection() {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -54,8 +59,7 @@ public class DbManager {
      * Executes a query without result.
      * @param query, the SQl query
      */
-    public void executeQuery(String query) {
-        openConnection();
+    public static void executeQuery(String query) {
         try {
             Statement statement = connection.createStatement();
             statement.executeQuery(query);
@@ -64,8 +68,11 @@ public class DbManager {
         }
     }
     
-    public void executeUpdate(String query) {
-        openConnection();
+    /**
+     * Executes an update query like UPDATE, SET or INSERT. Returns no result.
+     * @param query 
+     */
+    public static void executeUpdate(String query) {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -79,8 +86,7 @@ public class DbManager {
      * @param query Query that should be executed
      * @return Results of the query
      */
-    public ResultSet doQuery(String query) {
-        openConnection();
+    public static ResultSet doQuery(String query) {
         ResultSet result = null;
         try {
             Statement statement = connection.createStatement();
@@ -88,18 +94,15 @@ public class DbManager {
         } catch (java.sql.SQLException e) {
             System.err.println(SQL_EXCEPTION + e);
         }
-//        closeConnection();
         return result;        
     }
 
     /**
      * Executes a query with result.
-     *
      * @param query, the SQL query
      * @return 
      */
-    public ResultSet insertQuery(String query) {
-        openConnection();
+    public static ResultSet insertQuery(String query) {
         ResultSet result = null;
         try {
             Statement statement = connection.createStatement();

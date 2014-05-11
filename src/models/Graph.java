@@ -39,8 +39,9 @@ public class Graph {
         chart = ChartFactory.createLineChart("Score van bewoner", "Datum", "Score/botsingen", dcd);
         chart.setBackgroundPaint(new java.awt.Color(0xFF, 0xFF, 0xFF, 0)); //Transparant
         
-        /* This makes it so that the X Axis Category Labels are on mutliple lines,
-        instead of one line. With just one line, not everything is visible on the labels. */
+        /* This makes it so that the X Axis Category Labels wrap around mutliple lines,
+        instead of one line. With just one line, not everything is visible on the labels.
+        By default, only one line is set up. */
         CategoryPlot plot = chart.getCategoryPlot();
         CategoryAxis categoryAxis = plot.getDomainAxis();
         categoryAxis.setMaximumCategoryLabelLines(3);

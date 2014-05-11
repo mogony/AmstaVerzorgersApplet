@@ -104,11 +104,11 @@ public class Login extends javax.swing.JFrame {
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
         String username = tfUsername.getText().trim();
         String password = tfPassword.getText().trim();
-        QueryManager qm = new QueryManager();
-        int userId = new QueryManager().login(username, password);
+//        QueryManager qm = new QueryManager();
+        int userId = QueryManager.login(username, password);
         if(userId > 0) {
             System.out.println("Credentials seem to be correct...");
-            User user = qm.getUserData(userId);
+            User user = QueryManager.getUserData(userId);
             ldgraph.Session.storedUserId = user.getId();
             ldgraph.Session.storedUserName = user.getNaam();
             System.out.println("Logged in!");

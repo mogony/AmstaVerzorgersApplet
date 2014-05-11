@@ -11,7 +11,6 @@ import connectivity.QueryManager;
  */
 public class PatientGraph extends javax.swing.JFrame {
 
-    QueryManager qm = new QueryManager();
     
     /**
      * Creates new form PatientOverview2
@@ -20,7 +19,7 @@ public class PatientGraph extends javax.swing.JFrame {
         System.out.println("Setting up the chart...");
         initComponents();
         graphPanel.setLayout(new BorderLayout());
-        graphPanel.add(new Graph(qm.getUserScores(ldgraph.Session.storedPatientId)).getCp(), BorderLayout.CENTER);
+        graphPanel.add(new Graph(QueryManager.getUserScores(ldgraph.Session.storedPatientId)).getCp(), BorderLayout.CENTER);
         graphPanel.validate();
         System.out.println("Done setting up the chart.");
     }

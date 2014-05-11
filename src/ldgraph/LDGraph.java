@@ -8,7 +8,6 @@ import views.*;
  */
 public class LDGraph {
 
-    
     /**
      * Shows the login screen
      */
