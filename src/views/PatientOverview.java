@@ -7,12 +7,10 @@ import javax.swing.table.DefaultTableModel;
 import models.Patient;
 
 /**
- *
+ * This form retrieves a list of patients and shows them in a table.
  * @author Jelle Mogony, AMS04
  */
 public class PatientOverview extends javax.swing.JFrame {
-
-//    private QueryManager qm = new QueryManager();
     private DefaultTableModel patientTableModel;
     
     /**
@@ -24,7 +22,11 @@ public class PatientOverview extends javax.swing.JFrame {
         updateTable();
     }
     
-    public void updateTable() {
+    /**
+     * This method retrieves a list of all patients and sets up a table containing
+     * all retrieved data.
+     */
+    private void updateTable() {
         System.out.println("Setting up patients overview...");
         patientTableModel = (DefaultTableModel) this.patientTable.getModel();
         LinkedList<Patient> patients = QueryManager.getPatientList();

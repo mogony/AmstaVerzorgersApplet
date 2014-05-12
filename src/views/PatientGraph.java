@@ -7,7 +7,7 @@ import connectivity.QueryManager;
 
 /**
  * Shows a graph containing LineDraw scores per patient
- * @author Jelle Mogony
+ * @author Jelle Mogony, AMS04
  */
 public class PatientGraph extends javax.swing.JFrame {
 

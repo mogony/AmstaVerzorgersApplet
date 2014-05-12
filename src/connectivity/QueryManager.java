@@ -11,8 +11,6 @@ import models.*;
  * @author Jelle Mogony, AMS04
  */
 public class QueryManager {
-//    private final DbManager db = new DbManager();
-//    private PreparedStatement ps;
     
     public QueryManager() throws IllegalAccessException {
         throw new IllegalAccessException("Query Manager is an utility class. It is not meant to be instantiated.");
@@ -26,7 +24,7 @@ public class QueryManager {
      * @param password the password to be tested
      * @return the user id. If the username and password combination is 
      * incorrect, -1 will be returned.
-         */
+    */
     public static int login(String username, String password) {
         System.out.println("Logging in as " + username + "...");
         try {
@@ -78,7 +76,11 @@ public class QueryManager {
         System.out.println("Retrieved data of user with ID " + userId);
         return user;
     }
-    
+ 
+    /**
+     * Retrieves a list of all patients from the database.
+     * @return LinkedList of type patient containing all patients.
+     */
     public static LinkedList<Patient> getPatientList() {
         System.out.println("Getting patients list...");
         LinkedList<Patient> patients = new LinkedList();
@@ -104,6 +106,11 @@ public class QueryManager {
         return patients;
     }
     
+    /**
+     * Retrieves a list of scores scored by a patient.
+     * @param patientid the ID the scores that will be retrieved must be associated with.
+     * @return a list of type Score, containg scores in seconds and amount of collisions.
+     */
     public static LinkedList<Score> getUserScores(int patientid) {
         System.out.println("Getting all scores of patient " + patientid + "...");
         LinkedList<Score> userScores = new LinkedList();
@@ -134,6 +141,10 @@ public class QueryManager {
         return userScores;
     }
     
+    /**
+     * Deletes a patient.
+     * @param patientId The ID of the patient that will be deleted.
+     */
     public static void deletePatient(int patientId) {
         DbManager.openConnection();
         System.out.println("Deleting patient with ID " + patientId + "...");
@@ -142,6 +153,12 @@ public class QueryManager {
         DbManager.closeConnection();
     }
     
+    /**
+     * Modifies a column of a patient.
+     * @param patientId the ID associated with the patient whose record will be modified.
+     * @param toChange the column that will be modified.
+     * @param newValue the new value for the column.
+     */
     public static void editPatient(int patientId, String toChange, String newValue) {
         DbManager.openConnection();
         String sql = "UPDATE bewoner " + "SET " + toChange + "='" + newValue + "'"
@@ -150,6 +167,13 @@ public class QueryManager {
         DbManager.closeConnection();
     }
     
+    /**
+     * Add a new record for a patient.
+     * @param in the new patients name.
+     * @param ik the room nr.
+     * @param ig date of birth
+     * @param io comments
+     */
     public static void addPatient(String in, String ik, String ig, String io) {
         DbManager.openConnection();
         String sql = "INSERT INTO bewoner (naam, kamer, geb_datum, opmerkingen) " +

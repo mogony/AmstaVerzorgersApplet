@@ -6,7 +6,7 @@ import models.User;
 
 /**
  * This is the class for the login screen.
- * @author Jelle Mogony
+ * @author Jelle Mogony, AMS04
  */
 public class Login extends javax.swing.JFrame {
 

@@ -9,7 +9,7 @@ import views.*;
 public class LDGraph {
 
     /**
-     * Shows the login screen
+     * Shows the login screen.
      */
     public static void showLogin()
     {
@@ -18,7 +18,7 @@ public class LDGraph {
     }
     
     /**
-     * Shows an overview with a graph containing the patients scores.
+     * Shows an overview of all patients in the database with further options.
      */
     public static void showPatientOverview()
     {
@@ -26,6 +26,9 @@ public class LDGraph {
         po.setVisible(true);
     }
     
+    /**
+     * Shows a graph containing a patients scores and collisions over time.
+     */
     public static void showPatientGraph()
     {
         PatientGraph pg = new PatientGraph();

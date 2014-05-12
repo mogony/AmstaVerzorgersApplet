@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ldgraph;
 
 /**
- * Store temporary data in this file.
- * @author Jelle Mogony
+ * Store temporary data in this file. Useful for storing ID's in.
+ * @author Jelle Mogony, AMS04
  */
 public class Session {
     public static int storedUserId, storedPatientId;
