@@ -30,7 +30,7 @@ public class DbManager {
             Class.forName("com.mysql.jdbc.Driver");
 
             /* Db Server settings */
-            String url = "jdbc:mysql://localhost:3306/amsta";//?zeroDateTimeBehavior=convertToNull";
+            String url = "jdbc:mysql://localhost:3306/linedraw";//?zeroDateTimeBehavior=convertToNull";
             String user = "root", pass = "";
 
             /* Open connection */

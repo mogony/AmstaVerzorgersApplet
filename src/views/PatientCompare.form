@@ -26,19 +26,11 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="726" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="356" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jbDelete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jbAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbEdit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbRefresh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jlError" min="-2" max="-2" attributes="0"/>
@@ -55,14 +47,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="232" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jbAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbEdit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jlError" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -81,12 +66,9 @@
         <Component class="javax.swing.JTable" name="patientTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
+              <Table columnCount="2" rowCount="0">
                 <Column editable="false" title="id" type="java.lang.Integer"/>
                 <Column editable="false" title="Bewoner" type="java.lang.String"/>
-                <Column editable="false" title="Kamer" type="java.lang.String"/>
-                <Column editable="false" title="Geboorte Datum" type="java.lang.String"/>
-                <Column editable="false" title="Opmerkingen" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -101,21 +83,6 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="50" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="100" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="200" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -125,47 +92,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Laat resultaten zien"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jbDelete">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Verwijder"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDeleteActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jbAdd">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Voeg toe"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAddActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jlError">
-    </Component>
-    <Component class="javax.swing.JButton" name="jbEdit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pas aan"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEditActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jbRefresh">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ververs lijst"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRefreshActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>

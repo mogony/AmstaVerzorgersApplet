@@ -5,6 +5,6 @@ package ldgraph;
  * @author Jelle Mogony, AMS04
  */
 public class Session {
-    public static int storedUserId, storedPatientId;
-    public static String storedUserName, storedUserDob;
+    public static int storedUserId, storedPatientId, storedPatientId2;
+    public static String storedUserName, storedUserDob, storedPatientName, storedPatientName2;
 }

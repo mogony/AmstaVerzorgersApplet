@@ -26,6 +26,17 @@ public class LDGraph {
         po.setVisible(true);
     }
     
+    public static void showPatientCompareGraph()
+    {
+        PatientCompareGraph pcg = new PatientCompareGraph();
+        pcg.setVisible(true);
+    }
+        public static void showPatientCompare()
+    {
+        PatientCompare da = new PatientCompare();
+        da.setVisible(true);
+    }
+    
     /**
      * Shows a graph containing a patients scores and collisions over time.
      */

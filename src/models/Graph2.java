@@ -12,14 +12,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * it on screen.
  * @author Jelle Mogony, AMS04
  */
-public class Graph {
+public class Graph2 {
     private final ChartPanel cp;
 
     /**
      * Creates a graph based on the parameter 'scores'. 
      * @param scores 
      */
-    public Graph(LinkedList<Score> scores) {
+    public Graph2(LinkedList<Score> scores) {
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
 
         Iterator scoresList = scores.iterator();
@@ -34,7 +34,7 @@ public class Graph {
             and have never run into this problem until now. */
         }
         
-        JFreeChart chart = ChartFactory.createLineChart("Score van "+(ldgraph.Session.storedPatientName), "Datum", "Score/botsingen", dcd);
+        JFreeChart chart = ChartFactory.createLineChart("Score van "+(ldgraph.Session.storedPatientName2), "Datum", "Score/botsingen", dcd);
         chart.setBackgroundPaint(new java.awt.Color(0xFF, 0xFF, 0xFF, 0)); //Transparant
         
         /* This makes it so that the X Axis Category Labels wrap around mutliple lines,
@@ -46,7 +46,6 @@ public class Graph {
         
         cp = new ChartPanel(chart);
     }
- 
     
     /**
      * Retrieves a chart panel that must be placed in a panel to show it on screen.

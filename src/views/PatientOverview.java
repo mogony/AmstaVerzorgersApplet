@@ -4,6 +4,7 @@ import connectivity.QueryManager;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ldgraph.LDGraph;
 import models.Patient;
 
 /**
@@ -59,6 +60,7 @@ public class PatientOverview extends javax.swing.JFrame {
         jlError = new javax.swing.JLabel();
         jbEdit = new javax.swing.JButton();
         jbRefresh = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +130,13 @@ public class PatientOverview extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Compare");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,6 +154,8 @@ public class PatientOverview extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlError)
@@ -162,7 +173,8 @@ public class PatientOverview extends javax.swing.JFrame {
                     .addComponent(jbDelete)
                     .addComponent(jButton1)
                     .addComponent(jbEdit)
-                    .addComponent(jbRefresh))
+                    .addComponent(jbRefresh)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jlError)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,8 +189,11 @@ public class PatientOverview extends javax.swing.JFrame {
         {
             ldgraph.Session.storedPatientId = 
                     (int) patientTable.getValueAt(selectedRow, 0);
+            ldgraph.Session.storedPatientName = 
+                    (String) patientTable.getValueAt(selectedRow, 1);
             this.setVisible(false);
             ldgraph.LDGraph.showPatientGraph();
+            updateTable();
         } else 
         {
             System.out.println("No row selected!");
@@ -192,14 +207,18 @@ public class PatientOverview extends javax.swing.JFrame {
         {
             ldgraph.Session.storedPatientId = 
                     (int) patientTable.getValueAt(selectedRow, 0);
+            ldgraph.Session.storedPatientName = 
+                    (String) patientTable.getValueAt(selectedRow, 1);
 //            String patientName = qm.getPatient(ldgraph.Session.storedPatientId);
             int delYN = JOptionPane.showConfirmDialog(null, 
-                    "Weet u zeker dat u " + ldgraph.Session.storedPatientId + " wilt verwijderen?", "test", 1);
+                    "Weet u zeker dat u " + ldgraph.Session.storedPatientName + " wilt verwijderen?", "test", 1);
             if(delYN == 0) QueryManager.deletePatient(ldgraph.Session.storedPatientId);
+            updateTable();
         } else 
         {
             System.out.println("No row selected!");
             jlError.setText("U moet eerst een regel selecteren!");
+            updateTable();
         }
     }//GEN-LAST:event_jbDeleteActionPerformed
 
@@ -210,6 +229,7 @@ public class PatientOverview extends javax.swing.JFrame {
         ig = JOptionPane.showInputDialog(null,"Geboortedatum? (yyyy-mm-dd)", JOptionPane.QUESTION_MESSAGE);
         io = JOptionPane.showInputDialog(null,"Opmerkingen?", JOptionPane.QUESTION_MESSAGE);
         QueryManager.addPatient(in, ik, ig, io);
+        updateTable();
     }//GEN-LAST:event_jbAddActionPerformed
 
     private void jbEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditActionPerformed
@@ -219,18 +239,22 @@ public class PatientOverview extends javax.swing.JFrame {
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat moet de nieuwe naam zijn?", JOptionPane.QUESTION_MESSAGE);
             QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.NAME, newVal);
+            updateTable();
         } else if(selectedCol == 2) { //room
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat is de nieuwe kamer?", JOptionPane.QUESTION_MESSAGE);
             QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.ROOM, newVal);
+            updateTable();
         } else if(selectedCol == 3)  { //date of birth
             String newVal = JOptionPane.showInputDialog(null, 
                     "Wat is de juiste geboorte datum?", JOptionPane.QUESTION_MESSAGE);
             QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.DOB, newVal);
+            updateTable();
         } else if(selectedCol == 4)  { //comments
             String newVal = JOptionPane.showInputDialog(null, 
                     "Opmerking:", JOptionPane.QUESTION_MESSAGE);
             QueryManager.editPatient((int) patientTable.getValueAt(selectedRow, 0), Patient.COMMENTS, newVal);
+            updateTable();
         }
         else if(selectedCol == 0) {
             jlError.setText("U kunt ID's niet veranderen!");
@@ -238,11 +262,32 @@ public class PatientOverview extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEditActionPerformed
 
     private void jbRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshActionPerformed
+        //LDGraph.showPatientOverview();
         updateTable();
+        
     }//GEN-LAST:event_jbRefreshActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int selectedRow = patientTable.getSelectedRow();
+        if(selectedRow >= 0) 
+        {
+            ldgraph.Session.storedPatientId = 
+                    (int) patientTable.getValueAt(selectedRow, 0);
+            ldgraph.Session.storedPatientName = 
+                     (String) patientTable.getValueAt(selectedRow, 1);
+            this.setVisible(false);
+            LDGraph.showPatientCompare();
+            
+        } else 
+        {
+            System.out.println("No row selected!");
+            jlError.setText("U moet eerst een regel selecteren!");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbDelete;
