@@ -10,7 +10,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * Class that can be called to create a graph. 
  * It does not draw it, call method getCp() and add it to a panel to show
  * it on screen.
- * @author Jelle Mogony, AMS04
+ * @author Riekelt Goucem, AMS04
  */
 public class Graph2 {
     private final ChartPanel cp;

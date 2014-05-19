@@ -9,7 +9,7 @@ import models.Patient;
 
 /**
  * This form retrieves a list of patients and shows them in a table.
- * @author Jelle Mogony, AMS04
+ * @author Riekelt Goucem, AMS04
  */
 public class PatientCompare extends javax.swing.JFrame {
     private DefaultTableModel patientTableModel;

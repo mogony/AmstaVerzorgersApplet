@@ -6,8 +6,8 @@ import models.*;
 import connectivity.QueryManager;
 
 /**
- * Shows a graph containing LineDraw scores per patient
- * @author Jelle Mogony, AMS04
+ * Shows 2 graphs from users to compare to each other
+ * @author Riekelt Goucem AMS04
  */
 public class PatientCompareGraph extends javax.swing.JFrame {
 
