@@ -20,7 +20,9 @@ public class PatientOverview extends javax.swing.JFrame {
     public PatientOverview() {
         initComponents();
         this.setTitle(ldgraph.Session.storedUserName + " - Bewoners overzicht");
-        updateTable();
+        updateTable(); //Staat ongeveer 20x in dit document; zorgt
+                       //ervoor dat na elke handeling de lijst
+                       //zelfstandig gerefresht wordt
     }
     
     /**
@@ -59,7 +61,6 @@ public class PatientOverview extends javax.swing.JFrame {
         jbAdd = new javax.swing.JButton();
         jlError = new javax.swing.JLabel();
         jbEdit = new javax.swing.JButton();
-        jbRefresh = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,13 +124,6 @@ public class PatientOverview extends javax.swing.JFrame {
             }
         });
 
-        jbRefresh.setText("Ververs lijst");
-        jbRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRefreshActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Compare");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,8 +145,6 @@ public class PatientOverview extends javax.swing.JFrame {
                         .addComponent(jbAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
@@ -173,7 +165,6 @@ public class PatientOverview extends javax.swing.JFrame {
                     .addComponent(jbDelete)
                     .addComponent(jButton1)
                     .addComponent(jbEdit)
-                    .addComponent(jbRefresh)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jlError)
@@ -261,12 +252,6 @@ public class PatientOverview extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbEditActionPerformed
 
-    private void jbRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRefreshActionPerformed
-        //LDGraph.showPatientOverview();
-        updateTable();
-        
-    }//GEN-LAST:event_jbRefreshActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int selectedRow = patientTable.getSelectedRow();
         if(selectedRow >= 0) 
@@ -292,7 +277,6 @@ public class PatientOverview extends javax.swing.JFrame {
     private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbDelete;
     private javax.swing.JButton jbEdit;
-    private javax.swing.JButton jbRefresh;
     private javax.swing.JLabel jlError;
     private javax.swing.JTable patientTable;
     // End of variables declaration//GEN-END:variables
