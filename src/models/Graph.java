@@ -10,7 +10,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * Class that can be called to create a graph. 
  * It does not draw it, call method getCp() and add it to a panel to show
  * it on screen.
- * @author Jelle Mogony, AMS04
+ * @author Riekelt Goucem, AMS04
  */
 public class Graph {
     private final ChartPanel cp;
@@ -28,7 +28,7 @@ public class Graph {
             String xAxisLabel = currentScore.getDate() + "\nLevel: " + currentScore.getLevel();
             //TODO: find out why integers must be converted to numbers (not important)
             dcd.setValue((Number) currentScore.getScore(), "score", xAxisLabel);
-            dcd.setValue((Number) currentScore.getCollisions(), "collisions", xAxisLabel);
+            dcd.setValue((Number) currentScore.getCollisions(), "collisions*100", xAxisLabel);
             /* No idea why the ints should be cast to Numbers, but it works. I have
             used regular integers in the exact same way with the exact same method,
             and have never run into this problem until now. */
@@ -46,7 +46,6 @@ public class Graph {
         
         cp = new ChartPanel(chart);
     }
- 
     
     /**
      * Retrieves a chart panel that must be placed in a panel to show it on screen.

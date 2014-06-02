@@ -127,7 +127,7 @@ public class QueryManager {
                 userScores.add(new Score(
                     result.getInt("level_id"),
                     result.getString("naam"),
-                    result.getString("score"),
+                    result.getInt("score"),
                     result.getInt("collisions"),
                     result.getString("datum")));
             }
@@ -176,8 +176,8 @@ public class QueryManager {
      */
     public static void addPatient(String in, String ik, String ig, String io) {
         DbManager.openConnection();
-        String sql = "INSERT INTO bewoner (naam, kamer, geb_datum, opmerkingen) " +
-        "VALUES ('"+in+"','"+ik+"','"+ig+"','"+io+"')";
+        String sql = "INSERT INTO bewoner (naam, kamer, geb_datum, opmerkingen, moeilijkheid) " +
+        "VALUES ('"+in+"','"+ik+"','"+ig+"','"+io+"', '"+1+"')";
         DbManager.executeUpdate(sql);
         DbManager.closeConnection();
     }

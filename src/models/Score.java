@@ -23,27 +23,27 @@ public class Score {
      * @param collisions the amount of collisions made in the level
      * @param date the date the level was played
      */
-    public Score(int level, String name, String score, int collisions, String date) {
+    public Score(int level, String name, int score, int collisions, String date) {
         int lengthOfSecs = 5;
         this.level = level;
         this.name = name;
-        this.score = convertScoreToSecs(score);
+        this.score = score;
         this.collisions = collisions;
         this.date = date.substring(0, date.length()-lengthOfSecs); //removes seconds
     }
     
-    private static int convertScoreToSecs(String score) {
+   /* private static int convertScoreToSecs(String score) {
         String[] minSecs = score.split(":");
         int mins = Integer.parseInt(minSecs[0]);
         int secs = Integer.parseInt(minSecs[1]);
         return mins * 60 + secs;
     }
-
+*/
     /**
      * @return the level the patients has played in
      */
     public int getLevel() {
-        return level;
+        return level -3;
     }
 
     /**
@@ -77,15 +77,15 @@ public class Score {
     /**
      * @param score the correct score to be set
      */
-    public void setScore(String score) {
-        this.score = convertScoreToSecs(score);
+    public void setScore(int score) {
+        this.score = score;
     }
 
     /**
      * @return number of collisions in the level
      */
     public int getCollisions() {
-        return collisions;
+        return collisions*100;
     }
 
     /**

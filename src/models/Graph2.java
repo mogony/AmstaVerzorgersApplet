@@ -28,7 +28,7 @@ public class Graph2 {
             String xAxisLabel = currentScore.getDate() + "\nLevel: " + currentScore.getLevel();
             //TODO: find out why integers must be converted to numbers (not important)
             dcd.setValue((Number) currentScore.getScore(), "score", xAxisLabel);
-            dcd.setValue((Number) currentScore.getCollisions(), "collisions", xAxisLabel);
+            dcd.setValue((Number) currentScore.getCollisions(), "collisions*100", xAxisLabel);
             /* No idea why the ints should be cast to Numbers, but it works. I have
             used regular integers in the exact same way with the exact same method,
             and have never run into this problem until now. */
