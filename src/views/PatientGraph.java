@@ -38,6 +38,8 @@ public class PatientGraph extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        graphPanel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout graphPanelLayout = new javax.swing.GroupLayout(graphPanel);
         graphPanel.setLayout(graphPanelLayout);
         graphPanelLayout.setHorizontalGroup(
@@ -46,9 +48,10 @@ public class PatientGraph extends javax.swing.JFrame {
         );
         graphPanelLayout.setVerticalGroup(
             graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("< Terug");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

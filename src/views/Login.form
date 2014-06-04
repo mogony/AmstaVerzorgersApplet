@@ -27,23 +27,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jlPassword" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlUsername" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlUsername" min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="jlPassword" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="tfUsername" pref="175" max="32767" attributes="0"/>
                           <Component id="tfPassword" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="278" max="32767" attributes="0"/>
                       <Component id="bLogin" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jlError" max="32767" attributes="0"/>
@@ -58,18 +53,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tfUsername" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlUsername" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlPassword" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="tfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="bLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jlError" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,11 +72,17 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jlUsername">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gebruikersnaam"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPassword">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Wachtwoord"/>
       </Properties>
     </Component>
@@ -92,6 +93,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="bLogin">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
       <Events>

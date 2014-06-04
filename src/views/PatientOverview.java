@@ -1,11 +1,14 @@
 package views;
 
 import connectivity.QueryManager;
+import java.awt.Font;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import ldgraph.LDGraph;
 import models.Patient;
+
 
 /**
  * This form retrieves a list of patients and shows them in a table.
@@ -41,9 +44,32 @@ public class PatientOverview extends javax.swing.JFrame {
                 patient.getRoom(),
                 patient.getDob(),
                 patient.getComments()});
+                updateRowHeights();
+//            this.patientTable.setRowHeight(x);
         }
         System.out.println("Done setting up patients overview.");
     }
+    
+    private void updateRowHeights()
+{
+    try
+    {
+        patientTable.getTableHeader().setFont(new Font("SansSerif", Font.ITALIC, 20));
+        for (int row = 0; row < patientTable.getRowCount(); row++)
+        {
+            int rowHeight = patientTable.getRowHeight();
+
+            for (int column = 0; column < patientTable.getColumnCount(); column++)
+            {
+                
+                rowHeight = 30;
+            }
+
+            patientTable.setRowHeight(row, rowHeight);
+        }
+    }
+    catch(ClassCastException e) {}
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,12 +91,13 @@ public class PatientOverview extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        patientTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         patientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "Bewoner", "Kamer", "Geboorte Datum", "Opmerkingen"
+                "id", "Bewoner", "Kamer", "Geboortedatum", "Opmerkingen"
             }
         ) {
             Class[] types = new Class [] {
@@ -90,12 +117,14 @@ public class PatientOverview extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(patientTable);
         if (patientTable.getColumnModel().getColumnCount() > 0) {
-            patientTable.getColumnModel().getColumn(0).setMaxWidth(20);
-            patientTable.getColumnModel().getColumn(2).setMaxWidth(50);
+            patientTable.getColumnModel().getColumn(0).setMaxWidth(36);
+            patientTable.getColumnModel().getColumn(1).setMinWidth(160);
+            patientTable.getColumnModel().getColumn(2).setMaxWidth(75);
             patientTable.getColumnModel().getColumn(3).setMinWidth(100);
             patientTable.getColumnModel().getColumn(4).setMinWidth(200);
         }
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Laat resultaten zien");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +132,7 @@ public class PatientOverview extends javax.swing.JFrame {
             }
         });
 
+        jbDelete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbDelete.setText("Verwijder");
         jbDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +140,7 @@ public class PatientOverview extends javax.swing.JFrame {
             }
         });
 
+        jbAdd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbAdd.setText("Voeg toe");
         jbAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,13 +148,16 @@ public class PatientOverview extends javax.swing.JFrame {
             }
         });
 
+        jbEdit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbEdit.setText("Pas aan");
+        jbEdit.setIconTextGap(5);
         jbEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditActionPerformed(evt);
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Compare");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,37 +172,37 @@ public class PatientOverview extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlError)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlError)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAdd)
-                    .addComponent(jbDelete)
-                    .addComponent(jButton1)
-                    .addComponent(jbEdit)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
                 .addComponent(jlError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbDelete)
+                    .addComponent(jbAdd)
+                    .addComponent(jbEdit)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28))
         );
 
         pack();
