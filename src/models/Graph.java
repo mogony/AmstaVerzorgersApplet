@@ -1,5 +1,6 @@
 package models;
 
+import java.awt.Font;
 import java.util.*;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.CategoryAxis;
@@ -26,7 +27,9 @@ public class Graph {
     public Graph(LinkedList<Score> scores) {
            DefaultCategoryDataset scoreData = new DefaultCategoryDataset();
         DefaultCategoryDataset colData = new DefaultCategoryDataset();
-
+Font font = new Font("Dialog", Font.PLAIN, 30);
+        
+        
         Iterator scoresList = scores.iterator();
         while(scoresList.hasNext()) {
             Score currentScore = (Score) scoresList.next();
@@ -44,7 +47,11 @@ public class Graph {
                 "Score", scoreData);
         //Transparant
         chart.setBackgroundPaint(new java.awt.Color(0xFF, 0xFF, 0xFF, 0));
-        
+                         CategoryPlot p = chart.getCategoryPlot(); 
+                 CategoryAxis axis = p.getDomainAxis();
+ 
+                 p.getDomainAxis().setLabelFont(font);
+                 p.getRangeAxis().setLabelFont(font);
         /* This makes it so that the X Axis Category Labels wrap around mutliple lines,
         instead of one line. With just one line, not everything is visible on the labels.
         By default, only one line is set up. */
