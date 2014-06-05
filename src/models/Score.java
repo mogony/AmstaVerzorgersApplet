@@ -85,7 +85,7 @@ public class Score {
      * @return number of collisions in the level
      */
     public int getCollisions() {
-        return collisions*100;
+        return collisions;
     }
 
     /**
